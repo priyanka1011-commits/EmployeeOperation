@@ -1,0 +1,82 @@
+﻿@model IEnumerable<EmployeeDetails.Models.EmployeeModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EmployeeRecord</h2>
+
+<div id="searchParameters" style="width:778px;background:#FFFFFF;padding:10px; border:1px solid #000000">
+
+<h3>Search</h3><br />
+
+    <form method="get">
+        <div>
+            <div style="padding-bottom:5px">
+                salary:  @Html.TextBox("Salary", null, new
+                                 {
+                                     autocomplete = "off",
+                                     tabindex = 1,
+                                     maxlength = "7",
+                                 })
+
+                Age:  @Html.TextBox("Age", null, new
+                          {
+                              autocomplete = "off",
+                              tabindex = 2,
+                              maxlength='2',
+                          })
+
+                Location:  @Html.TextBox("Location", null, new
+                           {
+                               autocomplete = "off",
+                               tabindex = 3,
+                           })
+            </div>
+            <br />
+            <input id="searchSubmit" type="submit" value="Search" tabindex="7" style="margin-left:230px" />
+        </div>
+    </form>
+     <br />
+     <br />
+     <table class="table">
+         <tr>
+             <th>
+                 @Html.DisplayName("ID")
+             </th>
+             <th>
+                 @Html.DisplayName("Name")
+             </th>
+             <th>
+                 @Html.DisplayName("Age")
+             </th>
+             <th>
+                 @Html.DisplayName("Marital Status")
+             </th>
+             <th></th>
+         </tr>
+
+         @foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.ID)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Name)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.age)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.maritalStatus)
+                 </td>
+                 <td>
+                     @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                 </td>
+             </tr>
+         }
+     </table>
+</div>
+
+
